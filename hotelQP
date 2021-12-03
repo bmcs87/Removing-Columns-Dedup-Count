@@ -1,0 +1,18 @@
+#### Set Up
+# EDIT LOCATION FILE SAVED HERE (example: "C:/Users/resmi/Documents")
+setwd("C:/Users/resmi/Documents")
+
+
+install.packages("data.table")
+library(data.table)
+hotel <-fread("Hotel_QP_PathDetail.txt")
+attach(hotel)
+
+library(dplyr)
+df <- data.frame(hotel)
+df %>% select(-2:-33,-35,-37:-47)
+
+table(df$Audience.Name)
+options(max.print = 10000)
+hotel2 <- table(df$Audience.Name)
+write.csv(hotel2, "hotelqp.csv", row.names = FALSE )
